@@ -1,0 +1,116 @@
+
+//First Create DB(RDS) Then EC
+// for DB
+1) Create RDS on AWs
+GET the configuration
+username,pass,url,port,DB-Name
+2) test on Local MySQL Workbench IF yes the Deplyod On EC2
+
+
+for Ubuntu EC2 
+After ConnectionEstablished With AWS Server
+// start
+sudo su
+
+// update 
+sudo apt update
+
+// install java 17
+sudo apt install openjdk-17-jdk
+
+// install Maven
+sudo apt install maven
+
+// Git Clone
+git clone https://github.com/Chaitanya0202/sprinboot-demo.git
+
+// create jar file in target Folder
+mvn clean install
+
+//
+Run Jar File
+java -jar <jar name>
+
+DEMO-->
+1)create Springboot app With MySQL And Test That
+2)Create RDS On AWS And Copy the Configuration and Paste on Local MySQL Workbench And Test
+3)Create EC2 (clone Git )
+4) Test Public IPV4 OR DNS
+
+username--> admin
+pass --> Chetan1234
+db-name-->user
+port -->3306
+URL --> usertable.cz2g0eugigtg.ap-south-1.rds.amazonaws.com
+
+
+
+-------------------------------------------------------------
+Deployed  TaskAPH (task Manager On AWS using RDS and EC2)
+ 1) Create RDS First ----------------
+    --> Create Database -->Standard Create--> Select Database Type -->Free Tier 
+    --> DB-Name(DB instance identifier)-->Create username, Password -->select Public access(YES)
+    --> Database Name--> Create Database
+ Note--> Note Username ,Password, Port , URL values Note in Notepad	
+	Ex. 
+	DB-Name --> taskaphRDS
+	username-->admin
+	password --> Chetan1234
+	Port --> 3306
+	URL --> taskaphrds.cz2g0eugigtg.ap-south-1.rds.amazonaws.com
+
+ Test that Database Configuration In Local machine in which project u Want to deploy
+(replace configuration in properties file )
+
+2)Upload Project on GitHub
+--> Add README.md file
+--> add <name>sample</name> after <version></version> // Optional
+
+3) Create EC2-----------
+--> server name --> Ubuntu (Free tier)
+--> Create KEY pair(give name and Rest all Remains same [RSA , .pem])
+--> Launch Instance
+--> All Instance --> Waite for 2/2 Status Checks Passed
+--> Select Instance and Click on Connect--> connect(connection established with virtual machine)
+--> $ sudo su   // navigate to root folder
+--> $ sudo apt update  // need to update system first time
+--> $ sudo apt install openjdk-17-jdk  // install java 17 
+
+--> $ apt install maven // install maven
+--> $ java -version --> $ mvn -version // [check version after installed java and maven ]/optional
+
+--> $ git clone https://github.com/Chaitanya0202/taskaph-backend.git
+commands --> ls == dir 
+	 --> cd abc == cd abc/
+ --> navigate in project 
+
+--> $ mvn clean install // create jar File
+
+* * navigate in target folder ex. $ cd target/
+
+--> $ java -jar taskaph-0.0.1-SNAPSHOT.jar // run srpingboot application
+
+--> Public IPv4 DNS + :8080 + endpoints .ex 
+http://ec2-13-233-101-44.ap-south-1.compute.amazonaws.com:8080/api/users
+run in New tab [Its not works]// need to add security Group, allow 8080 port
+
+--> Security ->Security groups --> Edit Inbounds Rule --> add rule
+--> options values --> custom TCP -->8080 --> anywhere IP4 --> save rules
+--> Done, we can use API in FrontEnd
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
